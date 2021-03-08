@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+
+    android:layout_height="match_parent"
+    tools:context=".GetOutActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Get Out"
+        android:textSize="40sp" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Slot1"
+        android:textSize="30sp" />
+    <EditText
+        android:layout_width="match_parent"
+        android:textSize="34sp"
+        android:id="@+id/etgetout1"
+        android:hint="Enter Verificaion code that you got while booking to get out."
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btngetout1"
+        android:layout_width="wrap_content"
+android:layout_gravity="center"
+        android:text="Get Out"
+        android:textSize="20sp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Slot2"
+            android:textSize="30sp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:textSize="34sp"
+            android:id="@+id/etgetout2"
+            android:hint="Enter Verifiaction code that you got while booking to get out."
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btngetout2"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="Get Out"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Slot3"
+            android:textSize="30sp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:textSize="34sp"
+            android:id="@+id/etgetout3"
+            android:hint="Enter Verifiaction code that you got while booking to get out."
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/btngetout3"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="Get Out"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+</ScrollView>
