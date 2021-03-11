@@ -13,14 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartParking"
         android:usesCleartextTraffic="true">
-        <activity android:name=".GetOutActivity"></activity>
-        <activity android:name=".BookingActivity" />
-        <activity android:name=".SplashScreen">
+        <activity android:name=".ShowAvailable">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".GetOutActivity" />
+        <activity android:name=".BookingActivity" />
+        <activity android:name=".SplashScreen">
+
         </activity>
         <activity android:name=".MainActivity" />
     </application>

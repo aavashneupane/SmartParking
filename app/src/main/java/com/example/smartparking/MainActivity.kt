@@ -2,15 +2,19 @@ package com.example.smartparking
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
+import java.text.SimpleDateFormat
+import java.time.ZoneOffset
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,19 +59,22 @@ class MainActivity : AppCompatActivity() {
         val getin1 = database.getReference("ParkingIOT/SLOT1/bookedby/getin")
         val getout1 = database.getReference("ParkingIOT/SLOT1/bookedby/getout")
         val vacant1 = database.getReference("ParkingIOT/SLOT1/vacant")
-        val time1 = database.getReference("ParkingIOT/SLOT1/bookedby/time")
+        val timein1 = database.getReference("ParkingIOT/SLOT1/bookedby/timein")
+
 
         val bookedby2 = database.getReference("ParkingIOT/SLOT2/bookedby/name")
         val getin2 = database.getReference("ParkingIOT/SLOT2/bookedby/getin")
         val getout2 = database.getReference("ParkingIOT/SLOT2/bookedby/getout")
         val vacant2 = database.getReference("ParkingIOT/SLOT2/vacant")
-        val time2 = database.getReference("ParkingIOT/SLOT2/bookedby/time")
+        val timein2 = database.getReference("ParkingIOT/SLOT2/bookedby/timein")
+
 
         val bookedby3 = database.getReference("ParkingIOT/SLOT3/bookedby/name")
         val getin3 = database.getReference("ParkingIOT/SLOT3/bookedby/getin")
         val getout3 = database.getReference("ParkingIOT/SLOT3/bookedby/getout")
         val vacant3 = database.getReference("ParkingIOT/SLOT3/vacant")
-        val time3 = database.getReference("ParkingIOT/SLOT3/bookedby/time")
+        val timein3 = database.getReference("ParkingIOT/SLOT3/bookedby/timein")
+
 
 
 
@@ -130,6 +137,7 @@ class MainActivity : AppCompatActivity() {
         btnbook1.setOnClickListener {
 
             getin1.addValueEventListener(object : ValueEventListener {
+                @RequiresApi(Build.VERSION_CODES.O)
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
@@ -140,6 +148,10 @@ class MainActivity : AppCompatActivity() {
 
                         if(getin==etCode1.getText().toString()){
                             Toast.makeText(this@MainActivity, "Correct Code", Toast.LENGTH_SHORT).show()
+                      //      val in1=getTime()
+                            timein1.setValue(ServerValue.TIMESTAMP)
+
+                            //timein1.setValue()
                             startAlert();
                             btnopendoor1.setVisibility(View.VISIBLE);
                         }else{
@@ -160,6 +172,7 @@ class MainActivity : AppCompatActivity() {
         }
         btnbook2.setOnClickListener {
             getin2.addValueEventListener(object : ValueEventListener {
+
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
@@ -170,6 +183,7 @@ class MainActivity : AppCompatActivity() {
 
                         if(getin==etCode2.getText().toString()){
                             Toast.makeText(this@MainActivity, "Correct Code", Toast.LENGTH_SHORT).show()
+                            timein2.setValue(ServerValue.TIMESTAMP)
                             startAlert();
                             btnopendoor2.setVisibility(View.VISIBLE);
 
@@ -190,6 +204,7 @@ class MainActivity : AppCompatActivity() {
         }
         btnbook3.setOnClickListener {
             getin3.addValueEventListener(object : ValueEventListener {
+
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     // This method is called once with the initial value and again
                     // whenever data at this location is updated.
@@ -200,10 +215,13 @@ class MainActivity : AppCompatActivity() {
 
                         if(getin==etCode3.getText().toString()){
                             Toast.makeText(this@MainActivity, "Correct Code", Toast.LENGTH_SHORT).show()
-                            startAlert();
+
+                            timein3.setValue(ServerValue.TIMESTAMP)
+                            startAlert()
                             btnopendoor3.setVisibility(View.VISIBLE);
                         }else{
                             Toast.makeText(this@MainActivity, "cannot get value", Toast.LENGTH_SHORT).show()
+
 
                         }
 
@@ -221,21 +239,40 @@ class MainActivity : AppCompatActivity() {
         // onclick listener to open door
         btnopendoor1.setOnClickListener {
             opendoor.setValue(true)
-            Thread.sleep(10000)
-            opendoor.setValue(false)
+//            Thread.sleep(10000)
+//            opendoor.setValue(false)
             btnopendoor1.setVisibility(View.GONE);
+            startActivity(
+                Intent(
+                    this@MainActivity,
+                    ShowAvailable::class.java
+                )
+            )
         }
         btnopendoor2.setOnClickListener {
             opendoor.setValue(true)
             Thread.sleep(10000)
             opendoor.setValue(false)
-            btnopendoor2.setVisibility(View.GONE);
+            btnopendoor2.setVisibility(View.GONE)
+            startActivity(
+                Intent(
+                    this@MainActivity,
+                    ShowAvailable::class.java
+                )
+            )
+
         }
         btnopendoor3.setOnClickListener {
             opendoor.setValue(true)
             Thread.sleep(10000)
             opendoor.setValue(false)
             btnopendoor3.setVisibility(View.GONE);
+            startActivity(
+                Intent(
+                    this@MainActivity,
+                    ShowAvailable::class.java
+                )
+            )
         }
 
 
@@ -493,6 +530,7 @@ class MainActivity : AppCompatActivity() {
 
 
     //to claculate time
+
 
 
 }
