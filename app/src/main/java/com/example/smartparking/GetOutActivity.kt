@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.Gravity
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.database.*
+import java.util.*
 
 class GetOutActivity : AppCompatActivity() {
 
@@ -69,6 +71,8 @@ class GetOutActivity : AppCompatActivity() {
 // for slot1
         btngetout1.setOnClickListener {
 
+            val dateNow = Calendar.getInstance().time
+            Toast.makeText(this@GetOutActivity, "Your checkout time is $dateNow. Please Proceed", Toast.LENGTH_LONG).show()
             getin1.addValueEventListener(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -91,7 +95,7 @@ class GetOutActivity : AppCompatActivity() {
                             /////// to get userid from booking slot1
 //                            Toast.makeText(this@GetOutActivity, "email $email", Toast.LENGTH_SHORT).show()
 
-                            Toast.makeText(this@GetOutActivity, "email $email.text.toString()", Toast.LENGTH_SHORT).show()
+                    //        Toast.makeText(this@GetOutActivity, "email $email.text.toString()", Toast.LENGTH_SHORT).show()
 //                            val getintime: Task<DataSnapshot> =getin1.get()
 //                            val getouttime: Task<DataSnapshot> =getout1.get()
 //
@@ -105,14 +109,15 @@ class GetOutActivity : AppCompatActivity() {
                             var bookingsmodel=transactionData(email ,timeIn,d)
                             transactions.push().setValue(bookingsmodel)
 
-                            calculateTime1()
+                         //   calculateTime1()
 
                           //  Toast.makeText(this@GetOutActivity, "Total time is $d", Toast.LENGTH_SHORT).show()
                             openoutdoor.setValue(true)
-                            val handler = Handler()
-                            handler.postDelayed({
-                                openoutdoor.setValue(false)
-                            }, 32000)
+
+//                            val handler = Handler()
+//                            handler.postDelayed({
+//                                openoutdoor.setValue(false)
+//                            }, 32000)
 
 
                         }else{
@@ -133,6 +138,10 @@ class GetOutActivity : AppCompatActivity() {
         }
 //for slot 2
         btngetout2.setOnClickListener {
+
+            val dateNow = Calendar.getInstance().time
+            Toast.makeText(this@GetOutActivity, "Your checkout time is $dateNow. Please Proceed", Toast.LENGTH_LONG).show()
+
 
             getin2.addValueEventListener(object : ValueEventListener {
 
@@ -161,10 +170,10 @@ class GetOutActivity : AppCompatActivity() {
 
 
                             openoutdoor.setValue(true)
-                            val handler = Handler()
-                            handler.postDelayed({
-                                openoutdoor.setValue(false)
-                            }, 32000)
+//                            val handler = Handler()
+//                            handler.postDelayed({
+//                                openoutdoor.setValue(false)
+//                            }, 32000)
                         }else{
                             Toast.makeText(this@GetOutActivity, "Incorrect pin", Toast.LENGTH_SHORT).show()
 
@@ -185,6 +194,8 @@ class GetOutActivity : AppCompatActivity() {
         //for slot3
         btngetout3.setOnClickListener {
 
+            val dateNow = Calendar.getInstance().time
+            val d=Toast.makeText(this@GetOutActivity, "Your checkout time is $dateNow. Please Proceed", Toast.LENGTH_LONG).show()
             getin3.addValueEventListener(object : ValueEventListener {
 
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -211,10 +222,10 @@ class GetOutActivity : AppCompatActivity() {
 
                             openoutdoor.setValue(true)
 
-                            val handler = Handler()
-                            handler.postDelayed({
-                                openoutdoor.setValue(false)
-                            }, 32000)
+//                            val handler = Handler()
+//                            handler.postDelayed({
+//                                openoutdoor.setValue(false)
+//                            }, 32000)
 
                         }else{
                             Toast.makeText(this@GetOutActivity, "Incorrect pin", Toast.LENGTH_SHORT).show()
@@ -271,9 +282,13 @@ class GetOutActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError)
             {
                 Toast.makeText(this@GetOutActivity, "Failed to read Value", Toast.LENGTH_SHORT).show()
+
             }
         })
-            Toast.makeText(this@GetOutActivity, "$timeout11", Toast.LENGTH_SHORT).show()
+        //    Toast.makeText(this@GetOutActivity, "Your check out time is $timeout11", Toast.LENGTH_SHORT).show()
+
+
+
         return timeout11
     }
 

@@ -30,20 +30,7 @@ class ShowAvailable : AppCompatActivity() {
 
         tvAvailable=findViewById(R.id.tvAvailable)
 
-        availableslot.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val slot = dataSnapshot.getValue(Long::class.java)
-                if (slot != null) {
-
-
-
-                }
-            }
-            override fun onCancelled(error: DatabaseError)
-            {
-                Toast.makeText(this@ShowAvailable, "Failed to read Value", Toast.LENGTH_SHORT).show()
-            }
-        })
+      //  tvAvailable.setText("Welcome to Smart Parking.")
 
 
         layoutAvailable=findViewById(R.id.layoutAvailable)
